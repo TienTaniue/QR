@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR của tôi - Thanh toán</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- QR Code Card -->
+            <div class="qr-card">
+                <div class="user-info">
+                    <div class="user-header">
+                        <span class="star-icon">⭐</span>
+                        <div class="user-details">
+                            <h2 class="user-name">NGUYEN TIEN ANH</h2>
+                            <p class="user-phone">0947412006</p>
+                        </div>
+                        <button class="dropdown-btn">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M6 9l6 6 6-6"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- QR Code Display -->
+                <div class="qr-code-container">
+                    <img src="qrcode.png" alt="QR Code" id="qr-image" class="qr-image" onerror="tryImageFormats()">
+                </div>
+
+                <!-- Logos -->
+                <div class="logos">
+                    <div class="logo-item">
+                        <span class="logo-icon">V</span>
+                        <span class="logo-text">Im lang nao cobe</span>
+                    </div>
+                    <div class="logo-item">
+                        <span class="logo-text-napas">napas 247</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons">
+                <button class="action-btn" onclick="loCheo()">
+                    <span>Lọ chéo</span>
+                </button>
+                <button class="action-btn" onclick="loTanBao()">
+                    <span>Lọ tàn bạo</span>
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // Try different image formats if qrcode.png doesn't exist
+        function tryImageFormats() {
+            const img = document.getElementById('qr-image');
+            const formats = ['qrcode.jpg', 'qrcode.jpeg', 'qrcode.gif', 'qrcode.webp', 'qr.png', 'qr.jpg'];
+            let currentIndex = 0;
+            
+            function tryNext() {
+                if (currentIndex < formats.length) {
+                    img.src = formats[currentIndex];
+                    currentIndex++;
+                    img.onerror = tryNext;
+                } else {
+                    img.style.display = 'none';
+                    img.parentElement.innerHTML = '<p style="color: #999; text-align: center;">Vui lòng đặt file ảnh QR code với tên "qrcode.png" vào thư mục</p>';
+                }
+            }
+            
+            tryNext();
+        }
+
+        // Button functions
+        function loCheo() {
+            alert('Lọ chéo đã được kích hoạt!');
+        }
+
+        function loTanBao() {
+            alert('Lọ tàn bạo đã được kích hoạt!');
+        }
+    </script>
+</body>
+</html>
